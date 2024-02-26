@@ -1,5 +1,8 @@
 package Chess;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class UI {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
@@ -46,5 +49,16 @@ public class UI {
         }
         System.out.print(" ");
     }
-    
+    public static ChessPosition readChessPosition(Scanner sc) {
+        try {
+            String s = sc.nextLine();
+            char colum = sc.next().charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(colum,row);
+        } catch (RuntimeException e) {
+            throw new InputMismatchException("erro lendo posição de xadrez,valores valido sao de 1 a 8");
+        }
+
+    }
+
 }
