@@ -52,7 +52,7 @@ public class UI {
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
             String s = sc.nextLine();
-            char colum = sc.next().charAt(0);
+            char colum = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(colum,row);
         } catch (RuntimeException e) {
