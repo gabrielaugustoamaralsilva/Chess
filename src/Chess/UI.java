@@ -1,6 +1,7 @@
 package Chess;
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -24,7 +25,10 @@ public class UI {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-
+public static void clearScreen(){
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+}
     public static void printBoard(ChessPiece[][] pieces){
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8-i) + " ");
@@ -51,7 +55,7 @@ public class UI {
     }
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
-            String s = sc.nextLine();
+            String s = sc.nextLine().toLowerCase(Locale.ROOT);
             char colum = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(colum,row);
