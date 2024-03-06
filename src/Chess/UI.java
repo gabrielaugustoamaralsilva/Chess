@@ -1,8 +1,8 @@
 package Chess;
 
-import java.util.InputMismatchException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UI {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
@@ -29,6 +29,14 @@ public static void clearScreen(){
     System.out.print("\033[H\033[2J");
     System.out.flush();
 }
+   public static void printmatch(ChessMatch chessMatch,List<ChessPiece> captured){
+    printBoard(chessMatch.getPieces());
+       System.out.println();
+       printCapturedPieces(captured);
+       System.out.println();
+       System.out.println("Turno: " + chessMatch.getTurn());
+       System.out.println("esperando jogador: " + chessMatch.getCurrent_player());
+   }
     public static void printBoard(ChessPiece[][] pieces){
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8-i) + " ");
@@ -77,5 +85,19 @@ public static void clearScreen(){
         }
         System.out.println("  a b c d e f g h");
     }
+    private static void printCapturedPieces(List<ChessPiece> captured){
+    List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
+        List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+        System.out.println("CAPTURED PIECES");
+        System.out.print("WHITE:");
+        System.out.print(ANSI_WHITE);
+        System.out.println(Arrays.toString(white.toArray()));
+        System.out.print(ANSI_RESET);
+        System.out.print("BLACK:");
+        System.out.print(ANSI_YELLOW);
+        System.out.println(Arrays.toString(black.toArray()));
+        System.out.print(ANSI_RESET);
+    }
+
 
 }
