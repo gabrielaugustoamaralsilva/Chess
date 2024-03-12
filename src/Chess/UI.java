@@ -36,6 +36,9 @@ public static void clearScreen(){
        System.out.println();
        System.out.println("Turno: " + chessMatch.getTurn());
        System.out.println("esperando jogador: " + chessMatch.getCurrent_player());
+       if (chessMatch.getCheck()){
+           System.out.println("Você está em cheque");
+       }
    }
     public static void printBoard(ChessPiece[][] pieces){
         for (int i = 0; i < pieces.length; i++) {
