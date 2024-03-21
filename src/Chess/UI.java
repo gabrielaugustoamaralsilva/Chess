@@ -35,9 +35,14 @@ public static void clearScreen(){
        printCapturedPieces(captured);
        System.out.println();
        System.out.println("Turno: " + chessMatch.getTurn());
-       System.out.println("esperando jogador: " + chessMatch.getCurrent_player());
-       if (chessMatch.getCheck()){
-           System.out.println("Você está em cheque");
+       if (!chessMatch.getCheckmate()) {
+           System.out.println("esperando jogador: " + chessMatch.getCurrent_player());
+           if (chessMatch.getCheck()) {
+               System.out.println("Você está em cheque");
+           }
+       }else {
+           System.out.println("Chequemate");
+           System.out.println("Vencedor: " + chessMatch.getCurrent_player());
        }
    }
     public static void printBoard(ChessPiece[][] pieces){
